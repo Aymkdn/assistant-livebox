@@ -1,9 +1,9 @@
 {
-  "name": "assistant-template",
-  "version": "2.0.0",
-  "description": "Exemple de la structure d'un plugin",
+  "name": "assistant-livebox",
+  "version": "0.0.4",
+  "description": "Plugin pour contrôler la Livebox via un Assistant comme Google Home en utilisant le package assistant-plugins",
   "author": "aymkdn",
-  "main":"template.js",
-  "repository":"https://github.com/Aymkdn/assistant-template/",
+  "main": "livebox.js",
+  "repository": "https://github.com/Aymkdn/assistant-livebox/",
   "license": "MIT"
 }
