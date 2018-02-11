@@ -1,0 +1,9 @@
+{
+  "name": "assistant-template",
+  "version": "2.0.0",
+  "description": "Exemple de la structure d'un plugin",
+  "author": "aymkdn",
+  "main":"template.js",
+  "repository":"https://github.com/Aymkdn/assistant-template/",
+  "license": "MIT"
+}
