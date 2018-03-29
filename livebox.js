@@ -62,8 +62,7 @@ répond:
  */
 var AssistantLivebox = function(configuration) {
   // par exemple configuration.key si on a `{ "key": "XXX" }` dans le fichier configuration.json
-  // exemple: this.key = configuration.key;
-  this.baseURL = "http://livebox.home:8080/remoteControl/cmd?operation=01&mode=0&key=";
+  this.baseURL = "http://"+configuration.ip_box+":8080/remoteControl/cmd?operation=01&mode=0&key=";
 
   // commandes
   this.commandes = {
