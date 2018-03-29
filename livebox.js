@@ -199,6 +199,15 @@ AssistantLivebox.prototype.action = function(cmd) {
             key = _this.commandes[key];
           }
           console.log("[assistant-livebox] Chaine "+key);
+        } else {
+          canal = _this.chaines[nom];
+          if (canal) {
+            console.log("[assistant-livebox] Zappe sur "+nom+" ("+canal+")");
+            key=canal.split("").map(function(k) { return _this.commandes[k] });
+          } else {
+            console.log("[assistant-livebox] Chaine "+nom+" inconnue");
+            return Promise.resolve("");
+          }
         }
         break;
       }

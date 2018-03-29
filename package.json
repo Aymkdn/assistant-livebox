@@ -1,6 +1,6 @@
 {
   "name": "assistant-livebox",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Plugin pour contrôler la Livebox via un Assistant comme Google Home en utilisant le package assistant-plugins",
   "author": "aymkdn",
   "main": "livebox.js",
