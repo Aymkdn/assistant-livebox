@@ -62,7 +62,7 @@ répond:
  */
 var AssistantLivebox = function(configuration) {
   // par exemple configuration.key si on a `{ "key": "XXX" }` dans le fichier configuration.json
-  this.baseURL = "http://"+configuration.ip_box+":8080/remoteControl/cmd?operation=01&mode=0&key=";
+  this.baseURL = "http://"+configuration.ip_box+":8080/remoteControl/cmd?operation=01&key=&mode=0";
 
   // commandes
   this.commandes = {
@@ -116,13 +116,16 @@ AssistantLivebox.prototype.action = function(cmd) {
   var _this=this;
   return new Promise(function(prom_res, prom_rej) {
     var key;
+    console.log("[DEBUG] cmd=",cmd)
     switch(cmd.split(" ")[0]) {
       case 'zappe': {
         var nom = cmd.replace(/^zappe /,"").replace(/^sur /,"").toLowerCase().replace(/\s(\d)/g,"$1");
         var canal;
+        console.log("[DEBUG] nom=",nom)
         // si on a "la#" ça signifie qu'on a appelé un nombre
         if (/la\d+/.test(nom)) {
           key = nom.match(/la(\d+)/)[1].split("").join(",");
+          console.log("[DEBUG] zappe key=",key)
           key = _this.commandes[key];
           console.log("[assistant-livebox] Chaine "+key);
         }
@@ -130,6 +133,7 @@ AssistantLivebox.prototype.action = function(cmd) {
       }
       default:{
         key = _this.commandes[cmd];
+        console.log("[DEBUG] default key=",nom)
         if (key) {
           console.log("[assistant-livebox] Key "+key);
         } else {
@@ -139,7 +143,8 @@ AssistantLivebox.prototype.action = function(cmd) {
       }
     }
 
-    var url = _this.baseURL + key;
+    console.log("[DEBUG] key=",key);
+    var url = _this.baseURL.replace(/key=&/,"key="+key+"&") + key;
     console.log("[assistant-livebox] "+url)
     request({
       url:url
