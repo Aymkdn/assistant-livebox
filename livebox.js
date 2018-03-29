@@ -1,4 +1,7 @@
 var request = require('request-promise-native');
+var fs = require('fs');
+var path = require('path');
+function PromiseChain(n,r){var e=Promise.resolve(),i=n.map(function(n){return e=e.then(function(){return r(n)})});return Promise.all(i)}
 /*
 
 mode :
@@ -104,8 +107,72 @@ var AssistantLivebox = function(configuration) {
  * @return {Promise}
  */
 AssistantLivebox.prototype.init = function(plugins) {
-  this.plugins = plugins;
-  return Promise.resolve(this);
+  var _this=this;
+  _this.plugins = plugins;
+  var chainesFileName = 'chaines_orange.json';
+  var chainesFilePath = path.join(__dirname,chainesFileName);
+  return Promise.resolve()
+  .then(function() {
+    _this.chaines = {}; // pour enregistrer le nom de chaine -> numéro de chaine
+    // on regarde si on a une copie locale
+    try {
+      fs.accessSync(chainesFilePath, fs.constants.R_OK)
+      var stat = fs.statSync(chainesFilePath);
+      // on regarde si ça fait plus d'un mois depuis la dernière mise à jour
+      var timelaps = Date.now()-stat.mtime.getTime();
+      if (timelaps > 2419200000) throw "Rafraichissement des chaines via le Web";
+      else {
+        _this.chaines = require('./'+chainesFileName);
+        return false;
+      }
+    } catch(err) {
+      // on récupère les chaines Orange
+      console.log("[assistant-livebox] Récupération des chaines télé...");
+      return request({
+        url:"https://assistant.kodono.info/livebox.php",
+        agentOptions:{ "rejectUnauthorized":false }
+      })
+      .catch(function() {
+        try {
+          _this.chaines = require('./chaines.json');
+        } catch(err) {
+          console.log("[assistant-livebox] ERREUR : Impossible de récupérer la liste des chaines...");
+        }
+        return null
+      })
+    }
+    return resource;
+  })
+  .then(function(response) {
+    if (response) {
+      // on va lire le fichier replace_chaine.json qui permet de substituer certaines chaines
+      var substitution = require("./replace_chaine");
+
+      // puis on s'occupe de la réponse du serveur
+      var body =response.slice(9).replace(/\)\W+$/,"");
+      body = JSON.parse(body);
+      var i, chaines=[], nom, canal, slash;
+      for (i=0, len=body.chaines.length; i<len; i++) {
+        nom = _this.decodeEntities(body.chaines[i].nom);
+        // on remplace certains noms
+        nom = nom.toLowerCase().replace(/(.*)( \([^\)]+\))/,"$1").replace(/\s+/g," ").replace(/&/g," et ").replace(/\!/g,"").trim();
+        slash = nom.indexOf('/');
+        if (slash > -1) nom = nom.slice(0,slash);
+        nom = nom.replace(/\s+$/,"").replace(/\s(\d)/g,"$1");
+        // on fait la substitution
+        if (substitution[nom]) nom=substitution[nom];
+        if (!nom) continue;
+        canal = body.chaines[i].canal;
+        _this.chaines[nom] = canal;
+        console.log("[DEBUG] Chaine « "+nom+" » = "+canal)
+      }
+      // on écrit dans le fichier local
+      fs.writeFileSync(chainesFilePath, JSON.stringify(_this.chaines, null, 2));
+    }
+
+    if (response!==null) console.log("[assistant-livebox] Récupération des chaines terminée !");
+    return _this;
+  })
 };
 
 /**
@@ -125,8 +192,13 @@ AssistantLivebox.prototype.action = function(cmd) {
         // si on a "la#" ça signifie qu'on a appelé un nombre
         if (/la\d+/.test(nom)) {
           key = nom.match(/la(\d+)/)[1].split("").join(",");
-          console.log("[DEBUG] zappe key=",key)
-          key = _this.commandes[key];
+          console.log("[DEBUG] zappe key=",key);
+          if (key.length > 1) {
+            // il faut faire plusieurs appels pour chaque chaine
+            key = key.split("").map(function(k) { return _this.commandes[k] });
+          } else {
+            key = _this.commandes[key];
+          }
           console.log("[assistant-livebox] Chaine "+key);
         }
         break;
@@ -143,17 +215,23 @@ AssistantLivebox.prototype.action = function(cmd) {
       }
     }
 
+    if (!Array.isArray(key)) key=[key];
     console.log("[DEBUG] key=",key);
-    var url = _this.baseURL.replace(/key=&/,"key="+key+"&") + key;
-    console.log("[assistant-livebox] "+url)
-    request({
-      url:url
+    PromiseChain(key, function(k) {
+      var url = _this.baseURL.replace(/key=&/,"key="+key+"&");
+      console.log("[assistant-livebox] "+url)
+      request({
+        url:url
+      })
+      .then(function(data) {
+        console.log(data);
+      })
     })
-    .then(function(data) {
-      console.log(data);
+    .then(function() {
       prom_res();
     })
     .catch(function(err) {
+      console.log("[DEBUG] erreur=>",err);
       prom_rej(err);
     })
   })
@@ -173,3 +251,4 @@ exports.init=function(configuration, plugins) {
     return resource;
   })
 }
+
