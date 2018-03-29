@@ -149,8 +149,7 @@ AssistantLivebox.prototype.init = function(plugins) {
       var substitution = require("./replace_chaine");
 
       // puis on s'occupe de la réponse du serveur
-      var body =response.slice(9).replace(/\)\W+$/,"");
-      body = JSON.parse(body);
+      var body = JSON.parse(response);
       var i, chaines=[], nom, canal, slash;
       for (i=0, len=body.chaines.length; i<len; i++) {
         nom = _this.decodeEntities(body.chaines[i].nom);
@@ -236,6 +235,27 @@ AssistantLivebox.prototype.action = function(cmd) {
     })
   })
 };
+
+/**
+ * Permet de convertir des caractères HTML en leur équivalent (par exemple "&eacute;"" devient "é")
+ *
+ * @param  {String} str
+ * @return {String} Le résultat
+ */
+ AssistantLivebox.prototype.decodeEntities=function(str) {
+  var _this=this;
+  var mtch = str.match(/&([^;]+);/g);
+  if (mtch) {
+    mtch.forEach(function(s) {
+      var res = s.slice(1,-1);
+      if (res.charAt(0) !== "#") res=_this.htmlEntities[res];
+      else res = String.fromCharCode(res.slice(1));
+      var regex = new RegExp(s, "g")
+      str = str.replace(regex,res);
+    })
+  }
+  return str;
+}
 
 /**
  * Initialisation du plugin
