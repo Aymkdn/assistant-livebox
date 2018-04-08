@@ -51,7 +51,6 @@ Voici les phrases clés à dire — s'assurer d'avoir installé les applets asso
   - `mets la livebox sur pause` ([https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause](https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause)) : met le programme en cours sur pause
   - `remets la livebox en lecture` ([https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture](https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture)) : remet en lecture le programme en cours
   - `va dans le replay Livebox` ([https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox](https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox)) : va dans le menu Replay de la Livebox
-  - `affiche le résumé` ([https://ifttt.com/applets/CPWe7gJd-affiche-le-resume-d-une-video-livebox](https://ifttt.com/applets/CPWe7gJd-affiche-le-resume-d-une-video-livebox)) : affiche le résumé du programme en cours
 
 ## Personnalisation
 
