@@ -69,36 +69,36 @@ var AssistantLivebox = function(configuration) {
 
   // commandes
   this.commandes = {
-    "up":103,
-    "left":105,
-    "right":106,
-    "down":108,
-    "mute":113,
-    "vol_dec":114,
-    "vol_inc":115,
-    "on":116,
-    "off":116,
-    "menu":139,
-    "back":158,
-    "fwd":159,
-    "play":164,
-    "pause":164,
-    "rec":167,
-    "rwd":168,
-    "ok":352,
-    "vod":393,
-    "prgm_inc":402,
-    "prgm_dec":403,
-    "0":512,
-    "1":513,
-    "2":514,
-    "3":515,
-    "4":516,
-    "5":517,
-    "6":518,
-    "7":519,
-    "8":520,
-    "9":521
+    "up":"103",
+    "left":"105",
+    "right":"106",
+    "down":"108",
+    "mute":"113",
+    "vol_dec":"114",
+    "vol_inc":"115",
+    "on":"116",
+    "off":"116",
+    "menu":"139",
+    "back":"158",
+    "fwd":"159",
+    "play":"164",
+    "pause":"164",
+    "rec":"167",
+    "rwd":"168",
+    "ok":"352",
+    "vod":"393",
+    "prgm_inc":"402",
+    "prgm_dec":"403",
+    "0":"512",
+    "1":"513",
+    "2":"514",
+    "3":"515",
+    "4":"516",
+    "5":"517",
+    "6":"518",
+    "7":"519",
+    "8":"520",
+    "9":"521"
   }
 }
 
@@ -163,7 +163,6 @@ AssistantLivebox.prototype.init = function(plugins) {
         if (!nom) continue;
         canal = body.chaines[i].canal;
         _this.chaines[nom] = canal;
-        console.log("[DEBUG] Chaine « "+nom+" » = "+canal)
       }
       // on écrit dans le fichier local
       fs.writeFileSync(chainesFilePath, JSON.stringify(_this.chaines, null, 2));
@@ -175,73 +174,186 @@ AssistantLivebox.prototype.init = function(plugins) {
 };
 
 /**
- * @param {String} commande La commande envoyée depuis IFTTT par Pushbullet
+ * @param {String} fullCommande La commande envoyée depuis IFTTT par Pushbullet
  * @return {Promise}
  */
-AssistantLivebox.prototype.action = function(cmd) {
+AssistantLivebox.prototype.action = function(fullCommande) {
   var _this=this;
   return new Promise(function(prom_res, prom_rej) {
-    var key;
-    console.log("[DEBUG] cmd=",cmd)
-    switch(cmd.split(" ")[0]) {
-      case 'zappe': {
-        var nom = cmd.replace(/^zappe /,"").replace(/^sur /,"").toLowerCase().replace(/\s(\d)/g,"$1");
-        var canal;
-        console.log("[DEBUG] nom=",nom)
-        // si on a "la#" ça signifie qu'on a appelé un nombre
-        if (/la\d+/.test(nom)) {
-          key = nom.match(/la(\d+)/)[1].split("").join(",");
-          console.log("[DEBUG] zappe key=",key);
-          if (key.length > 1) {
-            // il faut faire plusieurs appels pour chaque chaine
-            key = key.split("").map(function(k) { return _this.commandes[k] });
+    console.log("[DEBUG] fullCommande=",fullCommande)
+
+    /**
+     * Prends les commandes et les converties dans des key à utiliser dans une URL pour piloter la Livebox
+     *
+     * @param  {String} cmd Une ou plusieurs commandes, séparées par une virgule
+     * @return {Promise} Retourne une Promise avec la key comme une String ou un Array de String
+     */
+    var returnKey = function(cmd) {
+      var key;
+      switch(cmd.split(" ")[0]) {
+        case 'zappe': {
+          var nom = cmd.replace(/^zappe /,"").replace(/^sur /,"").toLowerCase().replace(/\s(\d)/g,"$1");
+          var canal;
+          // si on a "la#" ça signifie qu'on a appelé un nombre
+          if (/la\d+/.test(nom)) {
+            key = nom.match(/la(\d+)/)[1].split("");
+            console.log("[assistant-livebox] Zappe sur la "+key);
+            if (key.length > 1) {
+              // il faut faire plusieurs appels pour chaque chaine
+              key = key.split("").map(function(k) { return _this.commandes[k] });
+            } else {
+              key = _this.commandes[key];
+            }
+            return Promise.resolve(key);
           } else {
-            key = _this.commandes[key];
+            canal = _this.chaines[nom];
+            if (canal) {
+              console.log("[assistant-livebox] Zappe sur "+nom+" ("+canal+")");
+              key=canal.split("").map(function(k) { return _this.commandes[k] });
+              return Promise.resolve(key);
+            } else {
+              return Promise.reject("Chaine "+nom+" inconnue");
+            }
           }
-          console.log("[assistant-livebox] Chaine "+key);
-        } else {
-          canal = _this.chaines[nom];
-          if (canal) {
-            console.log("[assistant-livebox] Zappe sur "+nom+" ("+canal+")");
-            key=canal.split("").map(function(k) { return _this.commandes[k] });
-          } else {
-            console.log("[assistant-livebox] Chaine "+nom+" inconnue");
-            return Promise.resolve("");
-          }
+          break;
         }
-        break;
-      }
-      default:{
-        key = _this.commandes[cmd];
-        console.log("[DEBUG] default key=",nom)
-        if (key) {
-          console.log("[assistant-livebox] Key "+key);
-        } else {
-          console.log("[assistant-livebox] Erreur : commande inconnue");
-          return prom_rej();
+        case 'on': {
+          // allume le décodeur
+          return _this.status()
+          .then(function(statut) {
+            // si le décodeur est déjà allumé, on ne fait rien
+            if (statut !== "OFF") {
+              console.log("[assistant-livebox] Le décodeur est déjà allumé.");
+              return;
+            }
+            return _this.commandes["on"];
+          })
+          break;
+        }
+        case 'off': {
+          // éteint le décodeur
+          return _this.status()
+          .then(function(statut) {
+            // si le décodeur est déjà allumé, on ne fait rien
+            if (statut === "OFF") {
+              console.log("[assistant-livebox] Le décodeur est déjà éteint.");
+              return;
+            }
+            return _this.commandes["off"];
+          })
+          break;
+        }
+        case 'tv': {
+          // pour mettre la TV
+          key = [];
+          // on regarde si le décodeur est allumé
+          return _this.status()
+          .then(function(statut) {
+            switch (statut) {
+              case "OFF": {
+                // décodeur éteint
+                key.push(_this.commandes["on"]); // on l'allume
+                key.push("wait6000"); // et on atteint 6 secondes
+                key.push(_this.commandes["ok"]);
+                key.push("wait3000"); // et on atteint 3 secondes
+                return key.join(",");
+              }
+              case "ON": {
+                // décodeur allumé, mais pas dans la TV
+                key.push(_this.commandes["back"]);
+                key.push("wait3000"); // et on atteint 3 secondes
+                return key.join(",");
+              }
+              default: {
+                // on est déjà dans la TV
+                return;
+              }
+            }
+          })
+        }
+        default:{
+          key = _this.commandes[cmd];
+          console.log("[DEBUG] default key=",nom)
+          if (key) {
+            console.log("[assistant-livebox] Key "+key);
+            return Promise.resolve(key);
+          } else {
+            return Promise.reject("commande '"+cmd+"' inconnue")
+          }
         }
       }
     }
 
-    if (!Array.isArray(key)) key=[key];
-    console.log("[DEBUG] key=",key);
-    PromiseChain(key, function(k) {
-      var url = _this.baseURL.replace(/key=&/,"key="+key+"&");
-      console.log("[assistant-livebox] "+url)
-      request({
-        url:url
-      })
-      .then(function(data) {
-        console.log(data);
+    // on peut avoir plusieurs commandes (séparées par une virgule) à envoyer à la Freebox
+    return PromiseChain(fullCommande.split(','), function(cmd) {
+      return returnKey(cmd)
+      .then(function(key) {
+        var keys=[];
+        if (key) {
+          key.split(',').forEach(function(k) {
+            keys.push(k);
+          })
+
+          return PromiseChain(keys, function(k) {
+            console.log("[DEBUG] key=",k);
+            // on regarde si c'est un "waitXXX"
+            if (k.slice(0,4) === "wait") {
+              return new Promise(function(p_res) {
+                setTimeout(function() {
+                  p_res()
+                }, k.slice(4)*1)
+              })
+            } else {
+              // on va exécuter chaque action avec un délai de 500ms entre chacune
+              return new Promise(function(p_res, p_rej) {
+                setTimeout(function() {
+                  var url = _this.baseURL.replace(/key=&/,"key="+k+"&");
+                  console.log("[assistant-livebox] "+url)
+                  request({url:url})
+                  .then(function() { p_res() })
+                  .catch(function(err) { p_rej(err) })
+                  p_res();
+                }, 500);
+              })
+            }
+          })
+        }
       })
     })
     .then(function() {
+      console.log("# PROMISE RESOLVE #")
       prom_res();
     })
     .catch(function(err) {
-      console.log("[DEBUG] erreur=>",err);
+      console.log("[assistant-livebox] Erreur :",err);
       prom_rej(err);
     })
+  })
+};
+
+/**
+ * Permet de connaitre le statut de la Livebox
+ *
+ * @return {Promise} Retourne une Promise avec "OFF" si décodeur éteint, ou "ON" si décodeur allumé mais pas sur la TV, ou "TV" si décodeur allumé et sur la télé
+ */
+AssistantLivebox.prototype.status = function() {
+  var url = this.baseURL.replace(/&key=&mode=0/,"");
+  //return Promise.resolve("OFF"); // TEST_AYMERIC
+  return request({
+    url:url,
+  })
+  .then(function(response) {
+    if (typeof response === "string") response=JSON.parse(response);
+    if (response.result && response.result.data.activeStandbyState && response.result.data && response.result.data.activeStandbyState) {
+      switch (response.result.data.activeStandbyState) {
+        case "0":{
+          return (response.result.data.playedMediaState ? "TV" : "ON");
+        }
+        case "1": return "OFF";
+      }
+    } else {
+      return Promise.reject('[assistant-livebox] Réponse inconnue.', response);
+    }
   })
 };
 
