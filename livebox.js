@@ -75,7 +75,9 @@ var AssistantLivebox = function(configuration) {
     "down":"108",
     "mute":"113",
     "vol_dec":"114",
+    "soundDown":"114",
     "vol_inc":"115",
+    "soundUp":"115",
     "on":"116",
     "off":"116",
     "menu":"139",
@@ -88,7 +90,9 @@ var AssistantLivebox = function(configuration) {
     "ok":"352",
     "vod":"393",
     "prgm_inc":"402",
+    "programUp":"402",
     "prgm_dec":"403",
+    "programDown":"403",
     "0":"512",
     "1":"513",
     "2":"514",
@@ -200,7 +204,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
             console.log("[assistant-livebox] Zappe sur la "+key);
             if (key.length > 1) {
               // il faut faire plusieurs appels pour chaque chaine
-              key = key.split("").map(function(k) { return _this.commandes[k] });
+              key = key.split("").map(function(k) { return _this.commandes[k] }).join("");
             } else {
               key = _this.commandes[key];
             }
@@ -209,7 +213,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
             canal = _this.chaines[nom];
             if (canal) {
               console.log("[assistant-livebox] Zappe sur "+nom+" ("+canal+")");
-              key=canal.split("").map(function(k) { return _this.commandes[k] });
+              key=canal.split("").map(function(k) { return _this.commandes[k] }).join("");
               return Promise.resolve(key);
             } else {
               return Promise.reject("Chaine "+nom+" inconnue");
@@ -272,8 +276,16 @@ AssistantLivebox.prototype.action = function(fullCommande) {
           })
         }
         default:{
-          key = _this.commandes[cmd];
-          console.log("[DEBUG] default key=",nom)
+          // on regarde si on a une étoile (*) signifiant qu'on répète plusieurs fois la même commande
+          if (cmd.indexOf("*") !== -1) {
+            key=cmd.replace(/(\w+)\*(\d+)/g, function(match, p1, p2) {
+              var ret=Array(p2*1+1);
+              p1=_this.commandes[p1];
+              return ret.join(p1+",").slice(0,-1)
+            });
+          } else {
+            key = _this.commandes[cmd];
+          }
           if (key) {
             console.log("[assistant-livebox] Key "+key);
             return Promise.resolve(key);
@@ -290,7 +302,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
       .then(function(key) {
         var keys=[];
         if (key) {
-          key.split(',').forEach(function(k) {
+           key.split(',').forEach(function(k) {
             keys.push(k);
           })
 
@@ -321,7 +333,6 @@ AssistantLivebox.prototype.action = function(fullCommande) {
       })
     })
     .then(function() {
-      console.log("# PROMISE RESOLVE #")
       prom_res();
     })
     .catch(function(err) {
@@ -337,7 +348,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
  * @return {Promise} Retourne une Promise avec "OFF" si décodeur éteint, ou "ON" si décodeur allumé mais pas sur la TV, ou "TV" si décodeur allumé et sur la télé
  */
 AssistantLivebox.prototype.status = function() {
-  var url = this.baseURL.replace(/&key=&mode=0/,"");
+  var url = this.baseURL.replace(/01&key=&mode=0/,"10");
   //return Promise.resolve("OFF"); // TEST_AYMERIC
   return request({
     url:url,
