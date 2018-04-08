@@ -184,10 +184,9 @@ AssistantLivebox.prototype.init = function(plugins) {
 AssistantLivebox.prototype.action = function(fullCommande) {
   var _this=this;
   return new Promise(function(prom_res, prom_rej) {
-    console.log("[DEBUG] fullCommande=",fullCommande)
 
     /**
-     * Prends les commandes et les converties dans des key à utiliser dans une URL pour piloter la Livebox
+     * Prend les commandes et les converties dans des key à utiliser dans une URL pour piloter la Livebox
      *
      * @param  {String} cmd Une ou plusieurs commandes, séparées par une virgule
      * @return {Promise} Retourne une Promise avec la key comme une String ou un Array de String
@@ -307,7 +306,6 @@ AssistantLivebox.prototype.action = function(fullCommande) {
           })
 
           return PromiseChain(keys, function(k) {
-            console.log("[DEBUG] key=",k);
             // on regarde si c'est un "waitXXX"
             if (k.slice(0,4) === "wait") {
               return new Promise(function(p_res) {

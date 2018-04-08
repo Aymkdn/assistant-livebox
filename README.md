@@ -1,5 +1,3 @@
-# EN COURS DE DEVELOPEMENT !
-
 # assistant-livebox
 
 Ce plugin de [`assistant-plugins`](https://aymkdn.github.io/assistant-plugins/) permet de contrôler la Livebox d'Orange.
@@ -48,21 +46,12 @@ Voici les phrases clés à dire — s'assurer d'avoir installé les applets asso
     *OK Google, zappe sur la 10*  
   - `coupe le son de la livebox` ([https://ifttt.com/applets/Zc2L69wm-coupe-le-son-de-la-livebox](https://ifttt.com/applets/Zc2L69wm-coupe-le-son-de-la-livebox))
   - `remets le son de la livebox` ([https://ifttt.com/applets/qUct6bAs-remets-le-son-de-la-livebox](https://ifttt.com/applets/qUct6bAs-remets-le-son-de-la-livebox))
-  - `baisse le son de la livebox` ([https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox](https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox)) : va baisser le son de 15 barres
-  - `baisse le son de la livebox de X` ([https://ifttt.com/applets/Lyr2baBf-baisse-le-son-de-x-barres-sur-la-livebox](https://ifttt.com/applets/Lyr2baBf-baisse-le-son-de-x-barres-sur-la-livebox)) : va baisser le son de X barres  
-   Exemple : *OK Google, baisse le son de la livebox de 50*
-  - `monte le son de la livebox` ([https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox](https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox)) : va augmenter le son de 15 barres
-  - `monte le son de la livebox de X` ([https://ifttt.com/applets/ThvqUQ65-augmente-le-son-de-x-barres-sur-la-livebox](https://ifttt.com/applets/ThvqUQ65-augmente-le-son-de-x-barres-sur-la-livebox)) : va augmenter le son de X barres  
-    Exemple : *OK Google, augmente le son de la livebox de 25*
+  - `baisse le son de la livebox` ([https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox](https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox)) : va baisser le son de 3 barres
+  - `monte le son de la livebox` ([https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox](https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox)) : va augmenter le son de 3 barres
   - `mets la livebox sur pause` ([https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause](https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause)) : met le programme en cours sur pause
-  - `remets la livebox en lecture` ([https://ifttt.com/applets/mHAXMym9-remets-la-livebox-en-lecture](https://ifttt.com/applets/mHAXMym9-remets-la-livebox-en-lecture)) : remet en lecture le programme en cours
-  - `reviens au direct` ([https://ifttt.com/applets/zfSALsrD-remets-le-direct-sur-la-livebox](https://ifttt.com/applets/zfSALsrD-remets-le-direct-sur-la-livebox)) : lorsque la livebox TV a été mise sur pause et qu'on souhaite revenir au direct
-  - `va dans Mes Enregistrements` ([https://ifttt.com/applets/KxHGy7vw-va-dans-mes-enregistrements-sur-la-livebox](https://ifttt.com/applets/KxHGy7vw-va-dans-mes-enregistrements-sur-la-livebox)) : pour aller dans le menu "Mes Enregistrements" de la livebox
-  - `va dans Mes Vidéos` ([https://ifttt.com/applets/ZkWauBKi-va-dans-mes-videos-sur-la-livebox](https://ifttt.com/applets/ZkWauBKi-va-dans-mes-videos-sur-la-livebox)) : pour aller dans le menu "Mes Vidéos" de la livebox
-  - `va dans le dossier ...` ([https://ifttt.com/applets/bbdEPtcx-va-dans-un-dossier-stocke-sur-la-livebox](https://ifttt.com/applets/bbdEPtcx-va-dans-un-dossier-stocke-sur-la-livebox)) : parcourt tous les dossiers définis dans `search_path` (voir la section Configuration ci-dessus) afin de trouver le dossier souhaité  
-    Exemples :  
-    *OK Google, va dans le dossier Star Trek*  
-    *OK Google, va dans le dossier The Walking Dead* (il vous faudra prendre votre plus bel accent anglais !)
+  - `remets la livebox en lecture` ([https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture](https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture)) : remet en lecture le programme en cours
+  - `va dans le replay Livebox` ([https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox](https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox)) : va dans le menu Replay de la Livebox
+  - `affiche le résumé` ([https://ifttt.com/applets/CPWe7gJd-affiche-le-resume-d-une-video-livebox](https://ifttt.com/applets/CPWe7gJd-affiche-le-resume-d-une-video-livebox)) : affiche le résumé du programme en cours
 
 ## Personnalisation
 
@@ -107,6 +96,6 @@ Dans l'étape 9) précédente, vous devez y indiquer une commande. Voici donc le
   - `soundUp` : envoie la commande `vol_inc`
   - `programUp` : envoie la commande `prgm_inc`
   - `programDown` : envoie la commande `prgm_dec`
+  - `zappe sur ABC` : permet de zapper sur la chaine ABC (exemple : `livebox_zappe sur la 1` ou `livebox_zappe sur TF1`)
   - `vod` : permet d'accéder à la VOD (*non testé*)
   - `rec` : permet d'enregistrer (*non testé*)
-  - `zappe sur ABC` : permet de zapper sur la chaine ABC (exemple : `livebox_zappe sur la 1` ou `livebox_zappe sur TF1`)
