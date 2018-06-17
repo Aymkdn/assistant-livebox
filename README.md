@@ -8,6 +8,14 @@ Ce plugin de [`assistant-plugins`](https://aymkdn.github.io/assistant-plugins/) 
 
 Merci à [@ABOAT](https://github.com/ABOATDev) pour avoir testé le plugin, puisque je ne possède pas de Livebox !
 
+## Sommaire
+
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Utilisation](#utilisation)
+  - [Personnalisation](#personnalisation)
+  - [Commandes](#commandes)
+  
 ## Installation
 
 Si vous n'avez pas installé [`assistant-plugins`](https://aymkdn.github.io/assistant-plugins/), alors il faut le faire, et sélectionner **livebox** comme plugin.
@@ -30,27 +38,63 @@ Il s'agit de l'adresse IP de votre décodeur Livebox. Si la configuration de la 
 
 ## Utilisation
 
-J'ai créé des applets IFTTT qui sont déjà disponibles. Vous pouvez donc les utiliser.
+J'ai créé des applets IFTTT pour vous faciliter la tâche.
 
 Voici les phrases clés à dire — s'assurer d'avoir installé les applets associées :
-  - `allume la livebox` ([https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox](https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox)) : allume **seulement** la livebox
-  - `allume la télé` ([https://ifttt.com/applets/bkVTxw7F-allume-la-tele-via-la-livebox/](https://ifttt.com/applets/bkVTxw7F-allume-la-tele-via-la-livebox/)) : allume la livebox **ET** va mettre une chaine télé
-  - `allume la télé et zappe sur ...` ([https://ifttt.com/applets/qe296b8Y-allume-la-tele-via-la-livebox-et-zappe-sur-une-chaine](https://ifttt.com/applets/qe296b8Y-allume-la-tele-via-la-livebox-et-zappe-sur-une-chaine)) : allume la livebox (si elle n'est pas allumée) puis va mettre la chaine de télé demandée   
+  - `allume la livebox` : allume **seulement** la livebox  
+    - Applet pour **Google Home** : [https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox-avec-google-home](https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/FGJwvnBj-allume-la-livebox-avec-cortana](https://ifttt.com/applets/FGJwvnBj-allume-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/NF5ARJfx-allume-la-livebox-avec-alexa](https://ifttt.com/applets/NF5ARJfx-allume-la-livebox-avec-alexa)
+  - `allume la télé` : allume la livebox **ET** va mettre une chaine télé
+    - Applet pour **Google Home** : [https://ifttt.com/applets/bkVTxw7F-allume-la-tele-via-la-livebox-avec-google-home](https://ifttt.com/applets/bkVTxw7F-allume-la-tele-via-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/ssHvzJe7-allume-la-tele-via-la-livebox-avec-cortana](https://ifttt.com/applets/ssHvzJe7-allume-la-tele-via-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/XgB34kRD-allume-la-tele-via-la-livebox-avec-alexa](https://ifttt.com/applets/XgB34kRD-allume-la-tele-via-la-livebox-avec-alexa)
+  - `allume la télé et zappe sur ...` : allume la livebox (si elle n'est pas allumée) puis va mettre la chaine de télé demandée   
     Exemples :  
     *OK Google, allume la télé et zappe sur M6*  
     *OK Google, allume la télé et zappe sur la 6*  
-  - `éteins la livebox` ([https://ifttt.com/applets/TaE7QPgp-eteins-la-livebox](https://ifttt.com/applets/TaE7QPgp-eteins-la-livebox)) : pour éteindre la livebox
-  - `zappe sur ...` ([https://ifttt.com/applets/Gkwdf5qX-zappe-sur-une-chaine-de-la-livebox](https://ifttt.com/applets/Gkwdf5qX-zappe-sur-une-chaine-de-la-livebox)) : zappe sur la chaine demandée, et fonctionne aussi avec le numéro de la chaine  
+    - Applet pour **Google Home** : [https://ifttt.com/applets/qe296b8Y-allume-la-tele-via-la-livebox-et-zappe-sur-une-chaine-avec-google-home](https://ifttt.com/applets/qe296b8Y-allume-la-tele-via-la-livebox-et-zappe-sur-une-chaine-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/TFLVCX3x-allume-la-tele-via-la-livebox-et-zappe-sur-une-chaine-avec-cortana](https://ifttt.com/applets/TFLVCX3x-allume-la-tele-via-la-livebox-et-zappe-sur-une-chaine-avec-cortana)
+    - Applet pour **Alexa** : *non disponible*
+  - `éteins la livebox` : pour éteindre la livebox
+    - Applet pour **Google Home** : [https://ifttt.com/applets/TaE7QPgp-eteins-la-livebox-avec-google-home](https://ifttt.com/applets/TaE7QPgp-eteins-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/tLgmPqHC-eteins-la-livebox-avec-cortana](https://ifttt.com/applets/tLgmPqHC-eteins-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/nytf5nC3-eteins-la-livebox-avec-alexa](https://ifttt.com/applets/nytf5nC3-eteins-la-livebox-avec-alexa)
+  - `zappe sur ...` : zappe sur la chaine demandée, et fonctionne aussi avec le numéro de la chaine  
    Exemples :  
     *OK Google, zappe sur TMC*  
     *OK Google, zappe sur la 10*  
-  - `coupe le son de la livebox` ([https://ifttt.com/applets/Zc2L69wm-coupe-le-son-de-la-livebox](https://ifttt.com/applets/Zc2L69wm-coupe-le-son-de-la-livebox))
-  - `remets le son de la livebox` ([https://ifttt.com/applets/qUct6bAs-remets-le-son-de-la-livebox](https://ifttt.com/applets/qUct6bAs-remets-le-son-de-la-livebox))
-  - `baisse le son de la livebox` ([https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox](https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox)) : va baisser le son de 3 barres
-  - `monte le son de la livebox` ([https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox](https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox)) : va augmenter le son de 3 barres
-  - `mets la livebox sur pause` ([https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause](https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause)) : met le programme en cours sur pause
-  - `remets la livebox en lecture` ([https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture](https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture)) : remet en lecture le programme en cours
-  - `va dans le replay Livebox` ([https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox](https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox)) : va dans le menu Replay de la Livebox
+    - Applet pour **Google Home** : [https://ifttt.com/applets/Gkwdf5qX-zappe-sur-une-chaine-de-la-livebox-avec-google-home](https://ifttt.com/applets/Gkwdf5qX-zappe-sur-une-chaine-de-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/Ng9zaJCQ-zappe-sur-une-chaine-de-la-livebox-avec-cortana](https://ifttt.com/applets/Ng9zaJCQ-zappe-sur-une-chaine-de-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : *Alexa* est très limitée niveau personnalisation... Du coup il faut une applet par chaine ! Voici quelques applets déjà créées pour vous : [Zappe sur TF1](https://ifttt.com/applets/pRvZqkBg-zappe-sur-tf1-via-la-livebox-avec-alexa), [Zappe sur France 2](https://ifttt.com/applets/Dntr5NRg-zappe-sur-france-2-via-la-livebox-avec-alexa), [Zappe sur France 3](https://ifttt.com/applets/tJbDUT5c-zappe-sur-france-3-via-la-livebox-avec-alexa), [Zappe sur Canal+](https://ifttt.com/applets/bGeSQpaW-zappe-sur-canal-via-la-livebox-avec-alexa), [Zappe sur France 5](https://ifttt.com/applets/nWx6sSHR-zappe-sur-france-5-via-la-livebox-avec-alexa), [Zappe sur M6](https://ifttt.com/applets/SMwbTiz6-zappe-sur-m6-via-la-livebox-avec-alexa), [Zappe sur Arte](https://ifttt.com/applets/hhBUwJ3x-zappe-sur-arte-via-la-livebox-avec-alexa), [Zappe sur C8](https://ifttt.com/applets/c2dkegNL-zappe-sur-c8-via-la-livebox-avec-alexa), [Zappe sur W9](https://ifttt.com/applets/irYGEySi-zappe-sur-w9-via-la-livebox-avec-alexa), [Zappe sur TMC](https://ifttt.com/applets/Wygv8VLP-zappe-sur-tmc-via-la-livebox-avec-alexa), [Zappe sur TFX](https://ifttt.com/applets/kgDcuKWr-zappe-sur-tfx-via-la-livebox-avec-alexa), [Zappe sur NRJ12](https://ifttt.com/applets/rQfu5Ca6-zappe-sur-nrj12-via-la-livebox-avec-alexa), [Zappe sur LCP](https://ifttt.com/applets/FNyb8etf-zappe-sur-lcp-via-la-livebox-avec-alexa), [Zappe sur France 4](https://ifttt.com/applets/atkPsSVz-zappe-sur-france-4-via-la-livebox-avec-alexa), [Zappe sur BFM](https://ifttt.com/applets/MDg5B39L-zappe-sur-bfm-tv-via-la-livebox-avec-alexa), [Zappe sur Gulli](https://ifttt.com/applets/ZchPUyTJ-zappe-sur-gulli-via-la-livebox-avec-alexa)
+  - `coupe le son de la livebox` 
+    - Applet pour **Google Home** : [https://ifttt.com/applets/Zc2L69wm-coupe-le-son-de-la-livebox-avec-google-home](https://ifttt.com/applets/Zc2L69wm-coupe-le-son-de-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/tqUBLTxR-coupe-le-son-de-la-livebox-avec-cortana](https://ifttt.com/applets/tqUBLTxR-coupe-le-son-de-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/cNevq362-coupe-le-son-de-la-livebox-avec-alexa](https://ifttt.com/applets/cNevq362-coupe-le-son-de-la-livebox-avec-alexa)
+  - `remets le son de la livebox` 
+    - Applet pour **Google Home** : [https://ifttt.com/applets/qUct6bAs-remets-le-son-de-la-livebox-avec-google-home](https://ifttt.com/applets/qUct6bAs-remets-le-son-de-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/nU2pqZwJ-remets-le-son-de-la-livebox-avec-cortana](https://ifttt.com/applets/nU2pqZwJ-remets-le-son-de-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/hUbavGsB-remets-le-son-de-la-livebox-avec-alexa](https://ifttt.com/applets/hUbavGsB-remets-le-son-de-la-livebox-avec-alexa)
+  - `baisse le son de la livebox` : va baisser le son de 3 barres
+    - Applet pour **Google Home** : [https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox-avec-google-home](https://ifttt.com/applets/VSAfav2p-baisse-le-son-de-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/e7xAWTMt-baisse-le-son-de-la-livebox-avec-cortana](https://ifttt.com/applets/e7xAWTMt-baisse-le-son-de-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/Kqpmjx5S-baisse-le-son-de-la-livebox-avec-alexa](https://ifttt.com/applets/Kqpmjx5S-baisse-le-son-de-la-livebox-avec-alexa)
+  - `monte le son de la livebox` : va augmenter le son de 3 barres
+    - Applet pour **Google Home** : [https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox-avec-google-home](https://ifttt.com/applets/v7MAerXS-augmente-le-son-de-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/XxtNsW6E-augmente-le-son-de-la-livebox-avec-cortana](https://ifttt.com/applets/XxtNsW6E-augmente-le-son-de-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/keTCgsyp-augmente-le-son-de-la-livebox-avec-alexa](https://ifttt.com/applets/keTCgsyp-augmente-le-son-de-la-livebox-avec-alexa)
+  - `mets la livebox sur pause` : met le programme en cours sur pause
+    - Applet pour **Google Home** : [https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause-avec-google-home](https://ifttt.com/applets/q8Lc5e6F-mets-la-livebox-sur-pause-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/HWMeqEBL-mets-la-livebox-sur-pause-avec-cortana](https://ifttt.com/applets/HWMeqEBL-mets-la-livebox-sur-pause-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/Gfb2Pgzr-mets-la-livebox-sur-pause-avec-alexa](https://ifttt.com/applets/Gfb2Pgzr-mets-la-livebox-sur-pause-avec-alexa)
+  - `remets la livebox en lecture` : remet en lecture le programme en cours
+    - Applet pour **Google Home** : [https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture-avec-google-home](https://ifttt.com/applets/pqgLPWHN-remets-la-livebox-en-lecture-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/Bpq6hL8K-remets-la-livebox-en-lecture-avec-cortana](https://ifttt.com/applets/Bpq6hL8K-remets-la-livebox-en-lecture-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/xFMtdnpB-remets-la-livebox-en-lecture-avec-alexa](https://ifttt.com/applets/xFMtdnpB-remets-la-livebox-en-lecture-avec-alexa)
+  - `va dans le replay Livebox` : va dans le menu Replay de la Livebox
+    - Applet pour **Google Home** : [https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox-avec-google-home](https://ifttt.com/applets/uef42FEr-va-dans-le-replay-de-la-livebox-avec-google-home)
+    - Applet pour **Cortana** : [https://ifttt.com/applets/KpCfdQJ9-va-dans-le-replay-de-la-livebox-avec-cortana](https://ifttt.com/applets/KpCfdQJ9-va-dans-le-replay-de-la-livebox-avec-cortana)
+    - Applet pour **Alexa** : [https://ifttt.com/applets/pwPnM3RH-va-dans-le-replay-de-la-livebox-avec-alexa](https://ifttt.com/applets/pwPnM3RH-va-dans-le-replay-de-la-livebox-avec-alexa)
 
 ## Personnalisation
 
@@ -58,18 +102,18 @@ Il est également possible de créer ses propres applets et commandes pour pilot
 
 Il faut pour cela procéder ainsi :
 
-  1) Créer une nouvelle *applet* dans IFTTT : [https://ifttt.com/create](https://ifttt.com/create)  
-  2) Cliquer sur **this** puis choisir **Google Assistant**  
-  3) Choisir la carte **Say a simple phrase** (ou autre, selon votre cas)  
-  4) Dans *« What do you want to say? »* mettre la phrase qui va déclencher l'action  
-  5) Remplir les autres champs de la carte  
-  6) Maintenant, cliquer sur **that** puis choisir **Pushbullet**  
-  7) Choisir la carte **Push a Note**  
-  8) Dans le champs *« Title »*, mettre `Assistant`  
-  9) Dans le champs *« Message »*, mettre `livebox_` suivi par la commande souhaitée (si plusieurs commandes, les séparer par une virgule) (voir plus bas)  
-  10) Enregistrer puis cliquer sur **Finish**  
-  11) Dites : « OK Google » suivi de votre phrase spéciale du point 4)  
-  12) Google Home va s'exécuter
+  1. Créer une nouvelle *applet* dans IFTTT : [https://ifttt.com/create](https://ifttt.com/create)  
+  2. Cliquer sur **this** puis choisir **Google Assistant** (ou **Cortana** ou **Amazon Alexa**)  
+  3. Choisir la carte **Say a simple phrase** (ou autre, selon votre cas)  
+  4. Dans *« What do you want to say? »* mettre la phrase qui va déclencher l'action  
+  5. Remplir les autres champs de la carte  
+  6. Maintenant, cliquer sur **that** puis choisir **Pushbullet**  
+  7. Choisir la carte **Push a Note**  
+  8. Dans le champs *« Title »*, mettre `Assistant`  
+  9. Dans le champs *« Message »*, mettre `livebox_` suivi par la commande souhaitée (si plusieurs commandes, les séparer par une virgule) (voir plus bas)  
+  10. Enregistrer puis cliquer sur **Finish**  
+  11. Dites : « OK Google » (ou la phase qui déclenche votre assistant) suivi de votre phrase spéciale du point 4)  
+  12. L'assitant va s'exécuter
 
 ### Commandes
 
