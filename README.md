@@ -96,6 +96,8 @@ Voici les phrases clés à dire — s'assurer d'avoir installé les applets asso
     - Applet pour **Cortana** : [https://ifttt.com/applets/KpCfdQJ9-va-dans-le-replay-de-la-livebox-avec-cortana](https://ifttt.com/applets/KpCfdQJ9-va-dans-le-replay-de-la-livebox-avec-cortana)
     - Applet pour **Alexa** : [https://ifttt.com/applets/pwPnM3RH-va-dans-le-replay-de-la-livebox-avec-alexa](https://ifttt.com/applets/pwPnM3RH-va-dans-le-replay-de-la-livebox-avec-alexa)
 
+Une applet ne fonctionne pas ? [Merci de me prévenir](https://github.com/Aymkdn/assistant-plugins/issues) !
+
 ## Personnalisation
 
 Il est également possible de créer ses propres applets et commandes pour piloter la livebox.
