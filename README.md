@@ -40,7 +40,7 @@ Il s'agit de l'adresse IP de votre décodeur Livebox. Si la configuration de la 
 
 J'ai créé des applets IFTTT pour vous faciliter la tâche.
 
-Voici les phrases clés à dire — s'assurer d'avoir installé les applets associées :
+Voici les phrases clés à dire — s'assurer d'avoir installé les applets associées (pour *Alexa* il faudra dire `Alexa déclenche` suivi de la phrasé-clé) :
   - `allume la livebox` : allume **seulement** la livebox  
     - Applet pour **Google Home** : [https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox-avec-google-home](https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox-avec-google-home)
     - Applet pour **Cortana** : [https://ifttt.com/applets/FGJwvnBj-allume-la-livebox-avec-cortana](https://ifttt.com/applets/FGJwvnBj-allume-la-livebox-avec-cortana)
