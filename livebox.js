@@ -203,7 +203,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
             console.log("[assistant-livebox] Zappe sur la "+key);
             if (key.length > 1) {
               // il faut faire plusieurs appels pour chaque chaine
-              key = key.split("").map(function(k) { return _this.commandes[k] }).join("");
+              key = key.split("").map(function(k) { return _this.commandes[k] }).join(",");
             } else {
               key = _this.commandes[key];
             }
@@ -212,7 +212,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
             canal = _this.chaines[nom];
             if (canal) {
               console.log("[assistant-livebox] Zappe sur "+nom+" ("+canal+")");
-              key=canal.split("").map(function(k) { return _this.commandes[k] }).join("");
+              key=canal.split("").map(function(k) { return _this.commandes[k] }).join(",");
               return Promise.resolve(key);
             } else {
               return Promise.reject("Chaine "+nom+" inconnue");
@@ -286,7 +286,6 @@ AssistantLivebox.prototype.action = function(fullCommande) {
             key = _this.commandes[cmd];
           }
           if (key) {
-            console.log("[assistant-livebox] Key "+key);
             return Promise.resolve(key);
           } else {
             return Promise.reject("commande '"+cmd+"' inconnue")
@@ -295,7 +294,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
       }
     }
 
-    // on peut avoir plusieurs commandes (séparées par une virgule) à envoyer à la Freebox
+    // on peut avoir plusieurs commandes (séparées par une virgule) à envoyer à la Livebox
     return PromiseChain(fullCommande.split(','), function(cmd) {
       return returnKey(cmd)
       .then(function(key) {

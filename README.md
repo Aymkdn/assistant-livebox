@@ -29,7 +29,7 @@ Si vous avez déjà installé [`assistant-plugins`](https://aymkdn.github.io/ass
 
 Éditer le fichier `configuration.json` du répertoire `assistant-plugins`.
 
-Dans la section concernant le plugin `livebox`, on trouve plusieurs paramètres.
+Dans la section concernant le plugin `livebox`, on trouve le paramètre ci-dessous.
 
 ### Paramètre `ip_box`
 
@@ -40,7 +40,7 @@ Il s'agit de l'adresse IP de votre décodeur Livebox. Si la configuration de la 
 
 J'ai créé des applets IFTTT pour vous faciliter la tâche.
 
-Voici les phrases clés à dire — s'assurer d'avoir installé les applets associées (pour *Alexa* il faudra dire `Alexa déclenche` suivi de la phrasé-clé) :
+Voici les phrases clés à dire — s'assurer d'avoir installé les applets associées (pour **Alexa** il faudra dire `Alexa déclenche` suivi de la phrasé-clé) :
   - `allume la livebox` : allume **seulement** la livebox  
     - Applet pour **Google Home** : [https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox-avec-google-home](https://ifttt.com/applets/zXEgyuJZ-allume-la-livebox-avec-google-home)
     - Applet pour **Cortana** : [https://ifttt.com/applets/FGJwvnBj-allume-la-livebox-avec-cortana](https://ifttt.com/applets/FGJwvnBj-allume-la-livebox-avec-cortana)
