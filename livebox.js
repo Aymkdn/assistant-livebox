@@ -199,7 +199,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
           var canal;
           // si on a "la#" ça signifie qu'on a appelé un nombre
           if (/la\d+/.test(nom)) {
-            key = nom.match(/la(\d+)/)[1].split("");
+            key = nom.match(/la(\d+)/)[1];
             console.log("[assistant-livebox] Zappe sur la "+key);
             if (key.length > 1) {
               // il faut faire plusieurs appels pour chaque chaine
@@ -300,7 +300,7 @@ AssistantLivebox.prototype.action = function(fullCommande) {
       .then(function(key) {
         var keys=[];
         if (key) {
-           key.split(',').forEach(function(k) {
+          key.split(',').forEach(function(k) {
             keys.push(k);
           })
 
