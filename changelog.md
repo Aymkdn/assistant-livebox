@@ -1,6 +1,10 @@
 # Changelog
 
 
+**Change Log v1.1.2 (21 octobre 2018)**
+
+  - Ajout de la commande `wait` par @mawachi (voir https://github.com/Aymkdn/assistant-livebox/issues/3)
+
 **Change Log v1.1.1 (1er septembre 2018)**
 
   - Le zapping sur les chaines supérieures à 9 ne fonctionnaient toujours pas (voir https://github.com/Aymkdn/assistant-plugins/issues/171)

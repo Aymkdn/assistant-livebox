@@ -283,6 +283,9 @@ AssistantLivebox.prototype.action = function(fullCommande) {
               return ret.join(p1+",").slice(0,-1)
             });
           } else {
+            if (/wait\d+/.test(cmd)) {
+              return Promise.resolve(cmd);
+            }
             key = _this.commandes[cmd];
           }
           if (key) {
