@@ -33,7 +33,7 @@ Dans la section concernant le plugin `livebox`, on trouve le paramètre ci-desso
 
 ### Paramètre `ip_box`
 
-Il s'agit de l'adresse IP de votre décodeur Livebox. Si la configuration de la Livebox n'a pas été modifiée, l'IP par défaut devrait être la bonne. Sinon il est possible de retrouver l'IP du décodeur en se rendant sur [http://livebox/](http://livebox/), puis cliquer sur le **décodeur**, et l'IP devrait s'afficher.
+Il s'agit de l'adresse IP de votre **décodeur Livebox**. Pour connaitre l'IP de votre décodeur il faut se rendre sur [http://livebox/](http://livebox/), puis cliquer sur le **décodeur**, et l'IP devrait s'afficher.
 
 
 ## Utilisation
