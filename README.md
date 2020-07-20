@@ -35,6 +35,20 @@ Dans la section concernant le plugin `livebox`, on trouve le paramètre ci-desso
 
 Il s'agit de l'adresse IP de votre **décodeur Livebox**. Pour connaitre l'IP de votre décodeur il faut se rendre sur [http://livebox/](http://livebox/), puis cliquer sur le **décodeur**, et l'IP devrait s'afficher.
 
+### Paramètre `autres_chaines`
+
+Si vous souhaitez ajouter des chaines manuellement, vous pouvez le faire avec le paramètre `autres_chaines` dans le fichier de configuration.
+
+Exemples:
+```json
+  "livebox":{
+    "ip_box":"192.168.0.1",
+    "autres_chaines":[
+      {"canal":"1001","nom":"Ma Chaine 1"},
+      {"canal":"1002","nom":"Ma Chaine 2"}
+    ]
+  }
+```
 
 ## Utilisation
 

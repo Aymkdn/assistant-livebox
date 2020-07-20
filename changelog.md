@@ -1,5 +1,8 @@
 # Changelog
 
+**Change Log v1.1.3 (20 juillet 2020)**
+
+  - Ajout d'une option `autres_chaines` qui permet d'ajouter ses propres chaines (voir https://github.com/Aymkdn/assistant-livebox/issues/7)
 
 **Change Log v1.1.2 (21 octobre 2018)**
 

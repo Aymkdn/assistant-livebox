@@ -66,6 +66,7 @@ répond:
 var AssistantLivebox = function(configuration) {
   // par exemple configuration.key si on a `{ "key": "XXX" }` dans le fichier configuration.json
   this.baseURL = "http://"+configuration.ip_box+":8080/remoteControl/cmd?operation=01&key=&mode=0";
+  this.autresChaines = configuration.autres_chaines || [];
 
   // commandes
   this.commandes = {
@@ -151,9 +152,10 @@ AssistantLivebox.prototype.init = function(plugins) {
     if (response) {
       // on va lire le fichier replace_chaine.json qui permet de substituer certaines chaines
       var substitution = require("./replace_chaine");
-
+      
       // puis on s'occupe de la réponse du serveur
       var body = JSON.parse(response);
+      body.chaines = body.chaines.concat(_this.autresChaines);
       var i, chaines=[], nom, canal, slash;
       for (i=0, len=body.chaines.length; i<len; i++) {
         nom = _this.decodeEntities(body.chaines[i].nom);
